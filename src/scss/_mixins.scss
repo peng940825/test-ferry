@@ -1,0 +1,16 @@
+@mixin size($w, $h) {
+  width: $w;
+  height: $h;
+}
+
+@mixin bg-img($url, $size, $position) {
+  background-image: url($url);
+  background-size: $size;
+  background-position: $position;
+}
+
+@mixin flex-align-justify($align, $justify) {
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+}
