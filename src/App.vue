@@ -6,9 +6,7 @@
       </div>
 
       <div class="menu-bar">
-        <div class="title">每日精選</div>
-        <div class="title">廚師推薦</div>
-        <div class="title">特價推廣</div>
+        <div class="title" v-for="(item, index) in titleList" :key="index">{{ item }}</div>
       </div>
     </header>
 
@@ -35,6 +33,11 @@ export default {
   components: {
     FoodCard,
   },
+  computed: {
+    titleList() {
+      return this.$store.state.titleList;
+    },
+  },
 };
 </script>
 
@@ -53,7 +56,7 @@ export default {
   .banner {
     @include size(100%, 20rem);
     @include flex-align-justify(flex-end, center);
-    @include bg-img('./assets/images/banner.jpg', cover, center);
+    @include img('./assets/images/banner.jpg', cover, center);
 
     p {
       color: #fff;
@@ -66,6 +69,7 @@ export default {
   .menu-bar {
     @include size(100%, 3rem);
     display: flex;
+    margin-bottom: 2rem;
     background-color: #000;
 
     .title {
