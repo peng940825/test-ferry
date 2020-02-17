@@ -1,0 +1,88 @@
+.food-card {
+  @include size(100%, auto);
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+
+  .row {
+    flex-wrap: wrap;
+
+    .card {
+      height: 100%;
+      position: relative;
+      box-shadow: $shadow;
+      margin: 0 1rem 2rem 1rem;
+
+      .sentiment, .priority, .enough {
+        @include absolute(1rem, 1rem);
+        @include flex-align-justify(center, unset);
+        color: #fff;
+
+        img {
+          width: 2.25rem;
+          height: 2.25rem;
+        }
+
+        p {
+          font-size: 1.5rem;
+          margin-left: 0.5rem;
+        }
+      }
+
+      .sentiment {
+        filter: drop-shadow(#fff 2px 2px 1px);
+      }
+
+      .priority {
+        filter: drop-shadow(red 2px 2px 1px);
+      }
+
+      .enough {
+        font-size: 1.5rem;
+        margin-left: 0.5rem;
+        filter: drop-shadow(#4caf50 2px 2px 1px);
+      }
+
+      .content {
+        padding: 1rem;
+
+        .price {
+          color: #9e9e9e;
+          font-size: 1.5rem;
+        }
+
+        .name {
+          font-weight: bold;
+          font-size: 1.75rem;
+          margin-top: 0.25rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .desc {
+          margin-bottom: 1rem;
+        }
+
+        .btn-buy {
+          @include size(100%, 2.25rem);
+          @include flex-align-justify(center, space-between);
+          cursor: pointer;
+          padding: 0 1rem;
+          box-shadow: $shadow;
+          border-radius: 0.125rem;
+          background-color: #4caf50;
+
+          p, i {
+            color: #fff;
+          }
+
+          i {
+            font-size: 1.25rem;
+          }
+        }
+
+        .disabled {
+          background-color: rgba(0,0,0,.12) !important;
+        }
+      }
+    }
+  }
+}
