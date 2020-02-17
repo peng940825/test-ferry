@@ -96,7 +96,6 @@ export default new Vuex.Store({
     currentTab: 1,
     tabList: ['每日精選', '廚師推薦', '特價推廣'],
   },
-  actions: {},
   mutations: {
     CREATE_CART_DATA(state) {
       const flatList = state.foodList.flat();
@@ -135,5 +134,6 @@ export default new Vuex.Store({
       o.item.num -= 1;
     },
   },
+  actions: {},
   modules: {},
 });

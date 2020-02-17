@@ -39,10 +39,11 @@ export default {
   },
   methods: {
     switchTab(index) {
+      this.$router.push('/dinner').catch(() => {});
       this.$store.commit('SWITCH_TAB', index);
     },
     toCartPage() {
-      this.$router.push('/cart');
+      this.$router.push('/cart').catch(() => {});
     },
   },
   mounted() {
