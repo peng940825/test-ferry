@@ -133,6 +133,11 @@ export default new Vuex.Store({
       const o = payload;
       o.item.num -= 1;
     },
+    AMEND_CART_NUM(state, payload) {
+      if (payload === 'plus') state.cartNum += 1;
+      else if (payload === 'less') state.cartNum -= 1;
+      else if (payload.status === 'remove') state.cartNum -= payload.num;
+    },
   },
   actions: {},
   modules: {},
