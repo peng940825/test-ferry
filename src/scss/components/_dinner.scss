@@ -10,7 +10,7 @@
       height: 100%;
       position: relative;
       box-shadow: $shadow;
-      margin: 0 1rem 2rem 1rem;
+      margin: 0 0.5rem 2rem 0.5rem;
 
       .sentiment, .priority, .enough {
         @include absolute(1rem, unset, unset, 1rem);
@@ -51,7 +51,7 @@
 
         .name {
           font-weight: bold;
-          font-size: 1.75rem;
+          font-size: 1.5rem;
           margin-top: 0.25rem;
           margin-bottom: 0.5rem;
         }
