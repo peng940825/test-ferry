@@ -1,7 +1,7 @@
 <template>
   <div class="food-card">
     <el-row class="row" type="flex" justify="center">
-      <el-col class="card" :xs="10" :sm="7" :md="5" :xl="4"
+      <el-col class="card" :xs="10" :sm="8" :md="5" :xl="4"
         v-for="(item, index) in foodList" :key="index"
       >
         <el-image :src="item.imgUrl" style="width: 100%; height: 100%"></el-image>

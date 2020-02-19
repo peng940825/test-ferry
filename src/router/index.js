@@ -3,6 +3,8 @@ import VueRouter from 'vue-router';
 
 import Dinner from '../components/Dinner.vue';
 import Cart from '../components/Cart.vue';
+import Delivery from '../components/Delivery.vue';
+import Thx from '../components/Thx.vue';
 
 Vue.use(VueRouter);
 
@@ -20,6 +22,20 @@ const routes = [
     path: '/cart',
     name: 'Cart',
     component: Cart,
+  },
+  {
+    path: '/delivery',
+    name: 'Delivery',
+    component: Delivery,
+  },
+  {
+    path: '/thx',
+    name: 'Thx',
+    component: Thx,
+  },
+  {
+    path: '*',
+    redirect: '/dinner',
   },
 ];
 

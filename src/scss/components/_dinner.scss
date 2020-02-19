@@ -13,13 +13,12 @@
       margin: 0 1rem 2rem 1rem;
 
       .sentiment, .priority, .enough {
-        @include absolute(1rem, 1rem);
+        @include absolute(1rem, unset, unset, 1rem);
         @include flex-align-justify(center, unset);
         color: #fff;
 
         img {
-          width: 2.25rem;
-          height: 2.25rem;
+          @include size(2.25rem, 2.25rem);
         }
 
         p {
@@ -29,17 +28,17 @@
       }
 
       .sentiment {
-        filter: drop-shadow(#fff 2px 2px 1px);
+        filter: drop-shadow(#fff 0.125rem 0.125rem 0.0625rem);
       }
 
       .priority {
-        filter: drop-shadow(red 2px 2px 1px);
+        filter: drop-shadow(red 0.125rem 0.125rem 0.0625rem);
       }
 
       .enough {
         font-size: 1.5rem;
         margin-left: 0.5rem;
-        filter: drop-shadow(#4caf50 2px 2px 1px);
+        filter: drop-shadow($primary 0.125rem 0.125rem 0.0625rem);
       }
 
       .content {
@@ -68,7 +67,7 @@
           padding: 0 1rem;
           box-shadow: $shadow;
           border-radius: 0.125rem;
-          background-color: #4caf50;
+          background-color: $primary;
 
           p, i {
             color: #fff;
@@ -77,10 +76,14 @@
           i {
             font-size: 1.25rem;
           }
+
+          &:hover {
+            background-color: rgba($color: $primary, $alpha: 0.85);
+          }
         }
 
         .disabled {
-          background-color: rgba(0,0,0,.12) !important;
+          background-color: rgba(0,0,0,.15) !important;
         }
       }
     }

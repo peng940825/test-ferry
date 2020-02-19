@@ -1,0 +1,62 @@
+.el-col {
+  margin-top: 2rem;
+  margin-bottom: 5rem;
+
+  .title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .el-icon-circle-plus {
+    cursor: pointer;
+    font-size: 2rem;
+    color: $primary;
+    margin-right: 1rem;
+  }
+
+  .el-icon-remove {
+    cursor: pointer;
+    font-size: 2rem;
+    color: #fb8c00;
+  }
+
+  .delete {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    padding: 0.125rem;
+    border-radius: 50%;
+    background-color: red;
+
+    img {
+      width: 1.5rem;
+      margin-bottom: -0.1875rem;
+    }
+  }
+
+  .amount {
+    text-align: end;
+    margin-top: 0.5rem;
+  }
+
+  .btn-confirm {
+    @include size(100%, 2.25rem);
+    @include flex-align-justify(center, space-between);
+    color: #fff;
+    padding: 0 1rem;
+    margin-top: 1rem;
+    font-size: 1.25rem;
+    box-shadow: $shadow;
+    border-radius: 0.125rem;
+  }
+}
+
+.active {
+  cursor: pointer;
+  background-color: $primary;
+}
+
+.disabled {
+  pointer-events: none;
+  background-color: #ccc;
+}

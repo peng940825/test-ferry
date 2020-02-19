@@ -119,7 +119,7 @@ export default new Vuex.Store({
       state.cart.forEach((item) => {
         if (item.name === payload.item.name) {
           const o = item;
-          // 增加存在於購物車內該食物的數量
+          // 增加存在於購物車內該品項數量
           o.num += 1;
           // 更新該品項總金額
           o.total = o.price * o.num;
@@ -134,9 +134,28 @@ export default new Vuex.Store({
       o.item.num -= 1;
     },
     AMEND_CART_NUM(state, payload) {
-      if (payload === 'plus') state.cartNum += 1;
-      else if (payload === 'less') state.cartNum -= 1;
-      else if (payload.status === 'remove') state.cartNum -= payload.num;
+      if (payload === 'plus') {
+        state.cartNum += 1;
+      } else if (payload === 'less') {
+        state.cartNum -= 1;
+      } else if (payload.status === 'remove') {
+        state.cartNum -= payload.num;
+      }
+    },
+    RESET_CART(state) {
+      state.cartNum = 0;
+      state.currentTab = 1;
+
+      state.cart.forEach((cartItem) => {
+        state.foodList.flat().forEach((foodItem) => {
+          if (cartItem.name === foodItem.name && cartItem.num > 0) {
+            const f = foodItem;
+            const c = cartItem;
+            f.num += c.num;
+            c.num = 0;
+          }
+        });
+      });
     },
   },
   actions: {},

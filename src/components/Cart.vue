@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-row type="flex" justify="center">
-      <el-col :span="16">
+      <el-col :xs="22" :sm="20" :md="18" :lg="16" :xl="14">
         <p class="title">晚餐購物車</p>
         <el-table :data="cartList" style="width: 100%">
           <el-table-column prop="name" label="晚餐" min-width="125"></el-table-column>
@@ -16,14 +16,16 @@
           <el-table-column prop="total" label="小結" min-width="50"></el-table-column>
           <el-table-column align="right">
             <template slot-scope="scope">
-              <button class="delete" @click="remove(scope.row, scope.$index)">
+              <button class="delete" @click="remove(scope.row)">
                 <img src="../assets/icons/delete.png" alt="">
               </button>
             </template>
           </el-table-column>
         </el-table>
         <p class="amount">總金額：{{ amount }}</p>
-        <div class="btn-confirm">
+        <div class="btn-confirm" :class="{ active: !confirmStatus, disabled: confirmStatus }"
+          @click="toDeliveryPage"
+        >
           <i class="el-icon-tableware"></i>
           <p>確定</p>
           <i class="el-icon-fork-spoon"></i>
@@ -48,6 +50,9 @@ export default {
     cartNum() {
       return this.$store.state.cartNum;
     },
+    confirmStatus() {
+      return this.cartNum === 0;
+    },
   },
   methods: {
     plus(row) {
@@ -70,67 +75,19 @@ export default {
       target.num += 1;
       this.$store.commit('AMEND_CART_NUM', 'less');
     },
-    remove(row, index) {
-      this.cartList.splice(index, 1);
-      this.$store.commit('AMEND_CART_NUM', { status: 'remove', num: row.num });
+    remove(row) {
+      const o = row;
+      this.$store.commit('AMEND_CART_NUM', { status: 'remove', num: o.num });
+      o.num = 0;
+      o.total = o.price * o.num;
+    },
+    toDeliveryPage() {
+      this.$router.push('/delivery').catch(() => {});
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.el-col {
-  margin-top: 2rem;
-  margin-bottom: 5rem;
-
-  .title {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-  }
-
-  .el-icon-circle-plus {
-    cursor: pointer;
-    font-size: 2rem;
-    color: #4caf50;
-    margin-right: 1rem;
-  }
-
-  .el-icon-remove {
-    cursor: pointer;
-    font-size: 2rem;
-    color: #fb8c00;
-  }
-
-  .delete {
-    cursor: pointer;
-    padding: 4px;
-    border: none;
-    outline: none;
-    border-radius: 50%;
-    background-color: red;
-
-    img {
-      width: 24px;
-      margin-bottom: -3px;
-    }
-  }
-
-  .amount {
-    text-align: end;
-    margin-top: 0.5rem;
-  }
-
-  .btn-confirm {
-    @include size(100%, 2.25rem);
-    @include flex-align-justify(center, space-between);
-    cursor: pointer;
-    color: #fff;
-    padding: 0 1rem;
-    margin-top: 1rem;
-    font-size: 1.25rem;
-    box-shadow: $shadow;
-    border-radius: 0.125rem;
-    background-color: #4caf50;
-  }
-}
+@import '@/scss/components/_cart.scss';
 </style>

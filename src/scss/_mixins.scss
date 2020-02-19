@@ -9,9 +9,11 @@
   background-position: $position;
 }
 
-@mixin absolute($t, $l) {
+@mixin absolute($t, $r, $b, $l) {
   position: absolute;
   top: $t;
+  right: $r;
+  bottom: $b;
   left: $l;
 }
 

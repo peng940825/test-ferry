@@ -13,6 +13,7 @@
       <div class="menu-bar">
         <div class="title" v-for="(item, index) in tabList" :key="index" @click="switchTab(index)">
           {{ item }}
+          <div class="line" v-if="index === currentTab">123</div>
         </div>
       </div>
     </header>
@@ -35,6 +36,9 @@ export default {
     },
     cartNum() {
       return this.$store.state.cartNum;
+    },
+    currentTab() {
+      return this.$store.state.currentTab;
     },
   },
   methods: {
