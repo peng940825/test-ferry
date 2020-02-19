@@ -8,7 +8,7 @@
         </div>
         <div class="line">
           <i class="el-icon-message"></i>
-          <span>請確認電郵將送到以下地址：</span>
+          <span>請確認電郵將送到以下地址：{{ form.email }}</span>
         </div>
         <div class="line">
           <i class="el-icon-warning"></i>
@@ -24,7 +24,11 @@ export default {
   data() {
     return {
       time: 5,
+      form: null,
     };
+  },
+  created() {
+    this.form = this.$route.params;
   },
   mounted() {
     setInterval(() => {

@@ -53,6 +53,8 @@
 </template>
 
 <script>
+import emailjs from 'emailjs-com';
+
 export default {
   data() {
     return {
@@ -62,7 +64,16 @@ export default {
         tel: '',
         email: '',
       },
+      emailContent: '',
     };
+  },
+  computed: {
+    cartList() {
+      return this.$store.state.cart.filter((item) => item.num > 0);
+    },
+    amount() {
+      return this.cartList.reduce((acc, cur) => acc + cur.total, 0);
+    },
   },
   methods: {
     input(target) {
@@ -150,11 +161,40 @@ export default {
     },
     submit() {
       if (this.form.name !== '' && this.form.address !== '') {
-        this.$router.push('/thx').catch(() => {});
+        this.emailContent += `
+          <p>總金額：${this.amount} 元</p>
+          <p>送餐地址：${this.form.address}</p>
+        `;
+        this.sendEmail();
+        this.$router.push({
+          name: 'Thx',
+          params: this.form,
+        }).catch(() => {});
       } else {
         alert('姓名與地址請務必填寫唷');
       }
     },
+    sendEmail() {
+      const templateParams = {
+        userMail: this.form.email,
+        user: this.form.name,
+        emailContent: this.emailContent,
+      };
+
+      emailjs.send('gmail', 'template_xvMJ6OEJ', templateParams, 'user_m7kEbIM1U8HRX3MaYTcIk')
+        .then(() => {
+          console.log('SUCCESS!');
+        }, (error) => {
+          console.log('FAILED...', error);
+        });
+    },
+  },
+  created() {
+    this.cartList.forEach((item) => {
+      this.emailContent += `
+        <p>${item.name} * ${item.num} = ${item.total} 元</p>
+      `;
+    });
   },
 };
 </script>
