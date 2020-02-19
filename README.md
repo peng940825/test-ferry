@@ -1,29 +1,6 @@
-# test
-
-## Project setup
+## 在本地端運行該項目
 ```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
+git clone https://github.com/peng940825/test.git
+npm run lintfix
 npm run serve
 ```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
